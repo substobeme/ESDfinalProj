@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS placementDB;
 USE placementDB;
 
 CREATE TABLE students (
-        student_id BIGINT NOT NULL PRIMARY KEY,
+        student_id BIGINT  PRIMARY KEY,
         first_name VARCHAR(255),
         last_name VARCHAR(255),
         email VARCHAR(255) UNIQUE NOT NULL,
@@ -19,14 +19,14 @@ CREATE TABLE students (
 
 CREATE TABLE alumni (
         id INT PRIMARY KEY,
-        sid INT,
+        sid BIGINT,
         email VARCHAR(255),
         contact BIGINT
 );
 
 CREATE TABLE alumni_organization (
         id INT PRIMARY KEY,
-        organization INT,
+        organization BIGINT,
         alumni_id INT,
         position VARCHAR(255),
         join_date DATE,
@@ -40,19 +40,19 @@ CREATE TABLE departments (
 );
 
 CREATE TABLE employee (
-        id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT PRIMARY KEY,
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
         title VARCHAR(255),
         photograph_path VARCHAR(255),
-        department VARCHAR(255) NOT NULL,
+        department INT ,
         email VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL
 );
 
 
 CREATE TABLE placement (
-        id INT PRIMARY KEY,
+        id BIGINT PRIMARY KEY,
         organization INT NOT NULL,
         profile VARCHAR(255),
         description TEXT,
