@@ -2,105 +2,120 @@ CREATE DATABASE IF NOT EXISTS placementDB;
 
 USE placementDB;
 
-CREATE TABLE students (
-        student_id BIGINT  PRIMARY KEY,
-        first_name VARCHAR(255),
-        last_name VARCHAR(255),
-        email VARCHAR(255) UNIQUE NOT NULL,
-        roll_number VARCHAR(255) UNIQUE NOT NULL,
-        cgpa DOUBLE,
-        graduation_year INT,
-        total_credits DOUBLE,
-        photograph_path VARCHAR(255),
-        domain BIGINT,
-        specialisation_id BIGINT,
-        placement_id BIGINT
-);
-
 CREATE TABLE alumni (
-        id INT PRIMARY KEY,
-        sid BIGINT,
-        email VARCHAR(255),
-        contact BIGINT
+                id BIGINT NOT NULL,
+                contact BIGINT,
+                email VARCHAR(255),
+                student_id BIGINT,
+                PRIMARY KEY (id)
 );
 
-CREATE TABLE alumni_organization (
-        id INT PRIMARY KEY,
-        organization BIGINT,
-        alumni_id INT,
-        position VARCHAR(255),
-        join_date DATE,
-        leave_date DATE
+CREATE TABLE alumni_organisation (
+                id BIGINT NOT NULL,
+                join_date DATE,
+                leave_date DATE,
+                position VARCHAR(255),
+                alumni_id BIGINT,
+                organisation VARCHAR(255),
+                PRIMARY KEY (id)
 );
 
 CREATE TABLE departments (
-        id INT PRIMARY KEY,
-        name VARCHAR(255) UNIQUE NOT NULL,
-        capacity INT NOT NULL
-);
-
-CREATE TABLE employee (
-        id INT PRIMARY KEY,
-        first_name VARCHAR(255) NOT NULL,
-        last_name VARCHAR(255) NOT NULL,
-        title VARCHAR(255),
-        photograph_path VARCHAR(255),
-        department INT ,
-        email VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL
-);
-
-
-CREATE TABLE placement (
-        id BIGINT PRIMARY KEY,
-        organization INT NOT NULL,
-        profile VARCHAR(255),
-        description TEXT,
-        intake INT,
-        minimum_grade DOUBLE
-);
-
-
-CREATE TABLE placement_filter (
-        id BIGINT NOT NULL PRIMARY KEY,
-        placement_id BIGINT,
-        specialisation BIGINT,
-        domain BIGINT
+                    id BIGINT NOT NULL,
+                    capacity INT,
+                    name VARCHAR(255),
+                    PRIMARY KEY (id),
+                    UNIQUE KEY (name)
 );
 
 CREATE TABLE domains (
-        domain_id BIGINT PRIMARY KEY,
-        program VARCHAR(255),
-        batch VARCHAR(255),
-        capacity INT,
-        qualification VARCHAR(255)
+                    id BIGINT NOT NULL,
+                    batch VARCHAR(255),
+                    capacity INT,
+                    program VARCHAR(255),
+                    qualification VARCHAR(255),
+                    PRIMARY KEY (id)
 );
 
-CREATE TABLE placement_student (
-        id BIGINT PRIMARY KEY,
-        placement_id BIGINT,
-        student_id BIGINT,
-        cv_application VARCHAR(255),
-        about TEXT,
-        acceptance VARCHAR(255),
-        comments TEXT,
-        date DATE
-);
-
-CREATE TABLE specialisation (
-        specialisation_id BIGINT PRIMARY KEY,
-        code VARCHAR(255) UNIQUE NOT NULL,
-        name VARCHAR(255),
-        description TEXT,
-        credits_required DOUBLE,
-        year VARCHAR(255)
+CREATE TABLE employee (
+                    id BIGINT NOT NULL AUTO_INCREMENT,
+                    department BIGINT,
+                    email VARCHAR(255),
+                    first_name VARCHAR(255),
+                    last_name VARCHAR(255),
+                    password VARCHAR(255),
+                    photograph_path VARCHAR(255),
+                    title VARCHAR(255),
+                    PRIMARY KEY (id)
 );
 
 CREATE TABLE organisation (
-            id BIGINT PRIMARY KEY,
-            name VARCHAR(255),
-            address VARCHAR(255)
+                    id BIGINT NOT NULL,
+                    address VARCHAR(255),
+                    name VARCHAR(255),
+                    PRIMARY KEY (id),
+                    UNIQUE KEY (name)
 );
+
+CREATE TABLE placement_filter (
+                    id BIGINT NOT NULL,
+                    domain BIGINT,
+                    placement_id BIGINT,
+                    specialisation BIGINT,
+                    PRIMARY KEY (id)
+);
+
+CREATE TABLE placement (
+                  id BIGINT NOT NULL,
+                   description VARCHAR(255),
+                   intake INT,
+                    min_grade DOUBLE,
+                    profile VARCHAR(255),
+                    organisation VARCHAR(255),
+                    PRIMARY KEY (id)
+);
+
+CREATE TABLE placement_student (
+                        id BIGINT NOT NULL,
+                        about VARCHAR(255),
+                        acceptance VARCHAR(255),
+                        comments VARCHAR(255),
+                        cv_application VARCHAR(255),
+                        date DATE,
+                        placement_id BIGINT,
+                        student_id BIGINT,
+                        PRIMARY KEY (id)
+);
+
+CREATE TABLE specialisation (
+                        id BIGINT NOT NULL,
+                        code VARCHAR(255),
+                        credits_required DOUBLE,
+                        description VARCHAR(255),
+                        name VARCHAR(255),
+                        year VARCHAR(255),
+                        PRIMARY KEY (id)
+);
+
+CREATE TABLE students (
+                          id BIGINT NOT NULL,
+                          cgpa INT,
+                          total_credits DOUBLE,
+                          email VARCHAR(255) NOT NULL,
+                          first_name VARCHAR(255),
+                          graduation_year INT,
+                          last_name VARCHAR(255),
+                          organisation VARCHAR(255),
+                          photo_path VARCHAR(255),
+                          roll_number VARCHAR(255) NOT NULL,
+                          domain_id BIGINT,
+                          placement_id BIGINT,
+                          specialisation_id BIGINT,
+                          PRIMARY KEY (id),
+                          UNIQUE KEY (email),
+                          UNIQUE KEY (roll_number)
+);
+
 
 
 

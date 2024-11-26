@@ -1,49 +1,49 @@
-
-ALTER TABLE alumni_organization
-    ADD CONSTRAINT fk_alumni_organization_organization
-        FOREIGN KEY (organization) REFERENCES organisation(id);
-
-ALTER TABLE alumni_organization
-    ADD CONSTRAINT fk_alumni_organization_alumni_id
-        FOREIGN KEY (alumni_id) REFERENCES alumni(id);
-
-
 ALTER TABLE alumni
-    ADD CONSTRAINT fk_alumni_sid
-        FOREIGN KEY (sid) REFERENCES students(student_id);
+    ADD CONSTRAINT fk_alumni_student
+        FOREIGN KEY (student_id) REFERENCES students (id);
+
+ALTER TABLE alumni_organisation
+    ADD CONSTRAINT fk_alumni_organisation_alumni
+        FOREIGN KEY (alumni_id) REFERENCES alumni (id);
+
+ALTER TABLE alumni_organisation
+    ADD CONSTRAINT fk_alumni_organisation_organisation
+        FOREIGN KEY (organisation) REFERENCES organisation (name);
+
+
+ALTER TABLE placement_filter
+    ADD CONSTRAINT fk_placement_filter_placement
+        FOREIGN KEY (placement_id) REFERENCES placement (id);
+
+ALTER TABLE placement_filter
+    ADD CONSTRAINT fk_placement_filter_specialisation
+        FOREIGN KEY (specialisation) REFERENCES specialisation (id);
+
+ALTER TABLE placement
+    ADD CONSTRAINT fk_placement_organisation
+        FOREIGN KEY (organisation) REFERENCES organisation (name);
+
+ALTER TABLE placement_student
+    ADD CONSTRAINT fk_placement_student_placement
+        FOREIGN KEY (placement_id) REFERENCES placement (id);
+
+ALTER TABLE placement_student
+    ADD CONSTRAINT fk_placement_student_student
+        FOREIGN KEY (student_id) REFERENCES students (id);
 
 
 ALTER TABLE employee
     ADD CONSTRAINT fk_employee_department
-        FOREIGN KEY (department) REFERENCES departments(id);
-
-
-ALTER TABLE placement_student
-    ADD CONSTRAINT fk_placement_student_placement_id
-        FOREIGN KEY (placement_id) REFERENCES placement(id);
-
-ALTER TABLE placement_student
-    ADD CONSTRAINT fk_placement_student_student_id
-        FOREIGN KEY (student_id) REFERENCES students(student_id);
-
-
-ALTER TABLE placement_filter
-    ADD CONSTRAINT fk_placement_filter_placement_id
-        FOREIGN KEY (placement_id) REFERENCES placement(id);
-
-ALTER TABLE placement_filter
-    ADD CONSTRAINT fk_placement_filter_domain
-        FOREIGN KEY (domain) REFERENCES domains(domain_id);
-
+        FOREIGN KEY (department) REFERENCES departments (id);
 
 ALTER TABLE students
-    ADD CONSTRAINT fk_students_domain
-        FOREIGN KEY (domain) REFERENCES domains(domain_id);
+    ADD CONSTRAINT fk_student_domain
+        FOREIGN KEY (domain_id) REFERENCES domains (id);
 
 ALTER TABLE students
-    ADD CONSTRAINT fk_students_placement_id
-        FOREIGN KEY (placement_id) REFERENCES placement(id);
+    ADD CONSTRAINT fk_student_placement
+        FOREIGN KEY (placement_id) REFERENCES placement (id);
 
 ALTER TABLE students
-    ADD CONSTRAINT fk_students_specialisation_id
-        FOREIGN KEY (specialisation_id) REFERENCES specialisation(specialisation_id);
+    ADD CONSTRAINT fk_student_specialisation
+        FOREIGN KEY (specialisation_id) REFERENCES specialisation (id);
