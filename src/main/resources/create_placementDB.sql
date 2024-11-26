@@ -2,6 +2,21 @@ CREATE DATABASE IF NOT EXISTS placementDB;
 
 USE placementDB;
 
+CREATE TABLE students (
+        student_id BIGINT NOT NULL PRIMARY KEY,
+        first_name VARCHAR(255),
+        last_name VARCHAR(255),
+        email VARCHAR(255) UNIQUE NOT NULL,
+        roll_number VARCHAR(255) UNIQUE NOT NULL,
+        cgpa DOUBLE,
+        graduation_year INT,
+        total_credits DOUBLE,
+        photograph_path VARCHAR(255),
+        domain BIGINT,
+        specialisation_id BIGINT,
+        placement_id BIGINT
+);
+
 CREATE TABLE alumni (
         id INT PRIMARY KEY,
         sid INT,
@@ -81,20 +96,14 @@ CREATE TABLE specialisation (
         year VARCHAR(255)
 );
 
-CREATE TABLE students (
-        student_id BIGINT NOT NULL PRIMARY KEY,
-        first_name VARCHAR(255),
-        last_name VARCHAR(255),
-        email VARCHAR(255) UNIQUE NOT NULL,
-        roll_number VARCHAR(255) UNIQUE NOT NULL,
-        cgpa DOUBLE,
-        graduation_year INT,
-        total_credits DOUBLE,
-        photograph_path VARCHAR(255),
-        domain BIGINT,
-        specialisation_id BIGINT,
-        placement_id BIGINT
+CREATE TABLE organisation (
+            id BIGINT PRIMARY KEY,
+            name VARCHAR(255),
+            address VARCHAR(255)
 );
+
+
+
 
 
 
