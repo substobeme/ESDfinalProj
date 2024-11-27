@@ -2,23 +2,27 @@ package com.subha.esdfinalproj.controller;
 
 import com.subha.esdfinalproj.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/student")
+@CrossOrigin(
+        origins = "http://localhost:9003",
+        methods = {RequestMethod.GET, RequestMethod.OPTIONS},
+        allowedHeaders = "*",
+        allowCredentials = "true"
+)
 public class StudentController {
     private final StudentService studentService;
-    @GetMapping("/")
+    @GetMapping
     public List<Object[]> showAllStudents()
     {
         return studentService.showAllStudents();
     }
+
     @GetMapping("/{keyword}")
     public List<Object[]> showStudentsByKeyword(@PathVariable String keyword)
     {

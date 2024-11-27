@@ -33,20 +33,16 @@ public class EmployeeService {
     }
 
     public String login(@Valid LoginRequest request) {
-        // Find the employee by email
         Employee employee = getEmployeeByEmail(request.email());
 
-        // Validate password
         if (!encryption.validates(request.password(), employee.getPassword())) {
             throw new AuthenticationException("Invalid credentials");
         }
 
-        // Check department authorization (if required)
         if (employee.getDepartment() != 2) {
             throw new AuthenticationException("Unauthorized access");
         }
 
-        // Generate and return token if all checks pass
         return jWTHelper.generateToken(request.email());
     }
 }

@@ -14,10 +14,10 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
             SELECT
                 s.first_name,
                 s.last_name,
-                d.program AS specialization,
-                sp.code AS specialization_code,
-                sp.description AS specialization_description,
-                p.organisation AS placement_organisation,
+                d.program ,
+                sp.code,
+                sp.description,
+                p.organisation,
                 ao.join_date,
                 ao.leave_date,
                 s.graduation_year,
@@ -51,10 +51,10 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
             SELECT
                 s.first_name,
                 s.last_name,
-                d.program AS specialization,
-                sp.code AS specialization_code,
-                sp.description AS specialization_description,
-                p.organisation AS placement_organisation,
+                d.program ,
+                sp.code ,
+                sp.description,
+                p.organisation ,
                 ao.join_date,
                 ao.leave_date,
                 s.graduation_year,
@@ -82,9 +82,8 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
                 specialisation sp ON s.specialisation_id = sp.id
             WHERE
                 (LOWER(p.organisation) LIKE CONCAT('%', LOWER(:keyword), '%') OR
-                LOWER(ao.organisation) LIKE CONCAT('%', LOWER(:keyword), '%') OR
                 s.graduation_year = CAST(:keyword AS SIGNED) OR
-                LOWER(d.program) LIKE CONCAT('%', LOWER(:keyword), '%') OR
+                LOWER(d.program) =  LOWER(:keyword) OR
                 LOWER(s.first_name) LIKE CONCAT('%', LOWER(:keyword), '%') OR
                 LOWER(s.last_name) LIKE CONCAT('%', LOWER(:keyword), '%') OR
                 LOWER(sp.code) LIKE CONCAT('%', LOWER(:keyword), '%'))
