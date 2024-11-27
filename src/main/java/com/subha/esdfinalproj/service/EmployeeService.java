@@ -4,6 +4,7 @@ import com.subha.esdfinalproj.dto.EmployeeRequest;
 import com.subha.esdfinalproj.dto.LoginRequest;
 import com.subha.esdfinalproj.entity.Employee;
 import com.subha.esdfinalproj.exception.EmployeeNotFoundException;
+import com.subha.esdfinalproj.exception.AuthenticationException;
 import com.subha.esdfinalproj.helper.Encryption;
 import com.subha.esdfinalproj.helper.JWTHelper;
 import com.subha.esdfinalproj.mapper.EmployeeMapper;
@@ -26,24 +27,26 @@ public class EmployeeService {
         employeeRepo.save(employee);
         return true;
     }
-
     public Employee getEmployeeByEmail(String email) {
         return employeeRepo.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Employee with email " + email + " not found"));
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with email " + email + " not found"));
     }
 
     public String login(@Valid LoginRequest request) {
+        // Find the employee by email
         Employee employee = getEmployeeByEmail(request.email());
-        if(employee == null) {
-            throw new EmployeeNotFoundException("Employee with email " + request.email() + " not found");
+
+        // Validate password
+        if (!encryption.validates(request.password(), employee.getPassword())) {
+            throw new AuthenticationException("Invalid credentials");
         }
-        if(!encryption.validates(request.password(), employee.getPassword()))
-        {
-            return "Login failed";
+
+        // Check department authorization (if required)
+        if (employee.getDepartment() != 2) {
+            throw new AuthenticationException("Unauthorized access");
         }
-        if(employee.getDepartment()!=2){
-            return "Login failed";
-        }
+
+        // Generate and return token if all checks pass
         return jWTHelper.generateToken(request.email());
     }
 }

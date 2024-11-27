@@ -1,9 +1,18 @@
 package com.subha.esdfinalproj.exception;
 
+import lombok.Getter;
 
-import lombok.Data;
-
-@Data
+@Getter
 public class EmployeeNotFoundException extends RuntimeException {
-    private final String message;
+    private final String errorCode;
+
+    public EmployeeNotFoundException(String message) {
+        super(message);
+        this.errorCode = "EMPLOYEE_NOT_FOUND";
+    }
+
+    public EmployeeNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+        this.errorCode = "EMPLOYEE_NOT_FOUND";
+    }
 }

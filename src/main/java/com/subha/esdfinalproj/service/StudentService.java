@@ -21,11 +21,18 @@ public class StudentService {
     }
 
     public List<Object[]> showStudentsByKeyword(String keyword) {
-        List<Object[]> objects =  studentRepo.showStudentsByKeyword(keyword);
-        if(objects == null)
-        {
-            throw  new StudentNotFoundException(String.format("Student with keyword %s not found", keyword));
+        if (keyword == null || keyword.trim().isEmpty()) {
+            throw new IllegalArgumentException("Keyword cannot be null or empty");
         }
-        return objects;
+
+        List<Object[]> results = studentRepo.showStudentsByKeyword(keyword);
+
+        if (results == null || results.isEmpty()) {
+            throw new StudentNotFoundException(
+                    String.format("No students found for keyword: %s", keyword)
+            );
+        }
+
+        return results;
     }
 }

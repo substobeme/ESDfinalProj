@@ -9,9 +9,9 @@ VALUES
 
 INSERT INTO domains (id, batch, capacity, program, qualification)
 VALUES
-    (1, '2024', 20, 'MTech', 'CSE'),
-    (2, '2024', 15, 'iMTech', 'CSE'),
-    (3, '2024', 10, 'MTech', 'ECE');
+    (1, '2022', 20, 'MTech', 'CSE'),
+    (2, '2022', 15, 'iMTech', 'CSE'),
+    (3, '2022', 10, 'MTech', 'ECE');
 
 
 INSERT INTO specialisation (id, code, credits_required, description, name, year)
@@ -38,10 +38,10 @@ VALUES
 
 INSERT INTO students (id, cgpa, total_credits, email, first_name, graduation_year, last_name, organisation, photo_path, roll_number, domain_id, placement_id, specialisation_id)
 VALUES
-    (1, 3.2, 22, 'subha.iiitb.ac.in', 'Subha', 2022, 'Chakraborty', 'Google', '/images/subha.jpg', 'MT2024156', 1, 1, 1),
-    (2, 4, 20, 'akash.iiitb.ac.in', 'Akash', 2022, 'Chaudhari', 'Microsoft', '/images/akash.jpg', 'MT2024002', 1, 2, 2),
-    (3, 3.2, 18, 'priya.iiitb.ac.in', 'Priya', 2022, 'Sharma', 'Amazon', '/images/priya.jpg', 'IM2024003', 2, 3, 3),
-    (4, 3, 16, 'jigyashu.iiitb.ac.in', 'Jigyashu', 2022, 'Das', NULL, '/images/jigyashu.jpg', 'MT2024004', 3, NULL, NULL);
+    (1, 3.2, 22, 'subha.iiitb.ac.in', 'Subha', 2024, 'Chakraborty', 'Google', '/images/subha.jpg', 'MT2024156', 1, 1, 1),
+    (2, 4, 20, 'akash.iiitb.ac.in', 'Akash', 2024, 'Chaudhari', 'Microsoft', '/images/akash.jpg', 'MT2024002', 1, 2, 2),
+    (3, 3.2, 18, 'priya.iiitb.ac.in', 'Priya', 2024, 'Sharma', 'Amazon', '/images/priya.jpg', 'IM2024003', 2, 3, 3),
+    (4, 3, 16, 'jigyashu.iiitb.ac.in', 'Jigyashu', 2024, 'Das', NULL, '/images/jigyashu.jpg', 'MT2024004', 3, NULL, NULL);
 
 
 INSERT INTO alumni (id, contact, email, student_id)
@@ -53,9 +53,9 @@ VALUES
 
 INSERT INTO alumni_organisation (id, join_date, leave_date, position, alumni_id, organisation)
 VALUES
-    (1, '2024-09-15', NULL, 'SDE', 1, 'CMC'),
-    (2, '2024-08-20', NULL, 'Analyst', 2, 'Microsoft'),
-    (3, '2024-09-01', NULL, 'Engineer', 3, 'Amazon');
+    (1, '2022-09-15', NULL, 'SDE', 1, 'CMC'),
+    (2, '2022-08-20', NULL, 'Analyst', 2, 'Microsoft'),
+    (3, '2022-09-01', NULL, 'Engineer', 3, 'Amazon');
 
 
 INSERT INTO placement_filter (id, domain, placement_id, specialisation)
@@ -67,6 +67,6 @@ VALUES
 
 INSERT INTO placement_student (id, about, acceptance, comments, cv_application, date, placement_id, student_id)
 VALUES
-    (1, 'Good fit for SDE role', 'Accepted', 'Enthusiastic', '/cv/subha.pdf', '2023-01-10', 1, 1),
-    (2, 'Strong analytical skills', 'Accepted', 'Experienced', '/cv/akash.pdf', '2023-01-15', 2, 2),
-    (3, 'Great ML knowledge', 'Accepted', 'Proficient', '/cv/priya.pdf', '2023-01-20', 3, 3);
+    (1, 'Good fit for SDE role', 'Accepted', 'Enthusiastic', '/cv/subha.pdf', '2024-01-10', 1, 1),
+    (2, 'Strong analytical skills', 'Accepted', 'Experienced', '/cv/akash.pdf', '2024-01-15', 2, 2),
+    (3, 'Great ML knowledge', 'Accepted', 'Proficient', '/cv/priya.pdf', '2024-01-20', 3, 3);
