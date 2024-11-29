@@ -9,10 +9,9 @@ https://github.com/user-attachments/assets/9a8d71b4-006c-497e-871e-dc34e3456467
 
 
 # Key Feature
-
-> Employee of Outreach Department can access student dashboard
-> The dashboard allows the user to search by keyword to check for course, secialization code, organization, role, name, graduation year etc
-> The dashboad allows for each search to be filtered by alumni status and placement status.
+- Employee of Outreach Department can access student dashboard
+- The dashboard allows the user to search by keyword to check for course, secialization code, organization, role, name, graduation year etc
+- The dashboad allows for each search to be filtered by alumni status and placement status.
 
 # Extra Info
 
