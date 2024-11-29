@@ -17,9 +17,10 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
                 d.program ,
                 sp.code,
                 sp.description,
-                p.organisation,
+                ao.organisation,
                 ao.join_date,
                 ao.leave_date,
+                ao.position,
                 s.graduation_year,
                 CASE
                     WHEN EXISTS (SELECT 1 FROM alumni a WHERE a.student_id = s.id) THEN 'Yes'
@@ -54,9 +55,10 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
                 d.program ,
                 sp.code ,
                 sp.description,
-                p.organisation ,
+                ao.organisation ,
                 ao.join_date,
                 ao.leave_date,
+                ao.position,
                 s.graduation_year,
                 CASE
                     WHEN EXISTS (SELECT 1 FROM alumni a WHERE a.student_id = s.id) THEN 'Yes'
@@ -81,12 +83,14 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
             LEFT JOIN
                 specialisation sp ON s.specialisation_id = sp.id
             WHERE
-                (LOWER(p.organisation) LIKE CONCAT('%', LOWER(:keyword), '%') OR
+                (LOWER(ao.organisation) LIKE CONCAT('%', LOWER(:keyword), '%') OR
                 s.graduation_year = CAST(:keyword AS SIGNED) OR
                 LOWER(d.program) =  LOWER(:keyword) OR
                 LOWER(s.first_name) LIKE CONCAT('%', LOWER(:keyword), '%') OR
                 LOWER(s.last_name) LIKE CONCAT('%', LOWER(:keyword), '%') OR
-                LOWER(sp.code) LIKE CONCAT('%', LOWER(:keyword), '%'))
+                LOWER(sp.code) LIKE CONCAT('%', LOWER(:keyword), '%')
+                    OR
+                LOWER(ao.position) LIKE CONCAT('%', LOWER(:keyword), '%'))
             ORDER BY
                 s.first_name;
             """, nativeQuery = true)

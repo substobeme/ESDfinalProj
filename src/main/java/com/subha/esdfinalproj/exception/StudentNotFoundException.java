@@ -8,11 +8,11 @@ public class StudentNotFoundException extends RuntimeException {
 
     public StudentNotFoundException(String message) {
         super(message);
-        this.errorCode = "STUDENT_NOT_FOUND";
+        this.errorCode = "STUDENT_NOT_FOUND1";
     }
 
     public StudentNotFoundException(String message, Throwable cause) {
         super(message, cause);
-        this.errorCode = "STUDENT_NOT_FOUND";
+        this.errorCode = "STUDENT_NOT_FOUND1";
     }
 }
